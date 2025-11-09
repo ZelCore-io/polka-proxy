@@ -7,6 +7,9 @@ module.exports = (app) => {
     app.get('/runtime', function (req, res) {
         polka.runtimeVersion(req, res)
     })
+    app.get('/header', function (req, res) {
+        polka.header(req, res)
+    })
     app.post('/submittx', function (req, res) {
         polka.submittx(req, res)
     })
