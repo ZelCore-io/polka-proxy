@@ -61,6 +61,19 @@ function header(req, res) {
     performNodeRequest(res, apiUrl, data);
 }
 
+function accountNonce(req, res) {
+    const max = 1000000;
+    const min = 1;
+
+    const apiUrl = `http://${config.server.address}:${config.server.port}`;
+    const data = {
+        jsonrpc: "2.0",
+        method: "account_nextIndex",
+        params: [req.params.address || req.query.address],
+        id: Math.floor(Math.random() * (max - min + 1)) + min
+    };
+    performNodeRequest(res, apiUrl, data);
+}
 function submittx(req, res) {
     let body = '';
     req.on('data', function (data) {
@@ -89,5 +102,6 @@ module.exports = {
     metadata,
     runtimeVersion,
     header,
+    accountNonce,
     submittx
 }

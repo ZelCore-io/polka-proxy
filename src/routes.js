@@ -10,6 +10,9 @@ module.exports = (app) => {
     app.get('/header', function (req, res) {
         polka.header(req, res)
     })
+    app.get('/nonce/:address?', function (req, res) {
+        polka.accountNonce(req, res)
+    })
     app.post('/submittx', function (req, res) {
         polka.submittx(req, res)
     })
